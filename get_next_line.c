@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 12:55:18 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/26 18:16:51 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/26 19:09:07 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include <sys/uio.h>
 #include <unistd.h>
 #include "get_next_line.h"
+
+/*
+**	Free buff,  if needed.
+*/
 
 static int		buff_free(char **buff)
 {
@@ -25,6 +29,10 @@ static int		buff_free(char **buff)
 	*buff = NULL;
 	return (0);
 }
+
+/*
+**	Create buff,  if needed.
+*/
 
 static char		*buff_create(char *buff)
 {
@@ -37,6 +45,12 @@ static char		*buff_create(char *buff)
 	}
 	return (buff);
 }
+
+
+/*
+**	Make a copy of the buffer
+**	without characters up to 'c'.
+*/
 
 static char		*buff_c_cut(char *buff, char c)
 {
@@ -67,6 +81,11 @@ static char		*buff_c_cut(char *buff, char c)
 	return (res);
 }
 
+/*
+**	Make a copy of the buffer
+**	without characters up to 'c'.
+*/
+
 int				take_str(char **line, char **buff)
 {
 	*line = strcjoin_free_s1(*line, *buff, '\n');
@@ -81,6 +100,12 @@ int				take_str(char **line, char **buff)
 	}
 	return (0);
 }
+
+/*
+**	This function read the file with defined buffer size (default 4096).
+**	Reading file is minimized. And function save buffer until the file end.
+**	Supports multiple files.
+*/
 
 int				get_next_line(int fd, char **line)
 {

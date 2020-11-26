@@ -6,7 +6,7 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 18:23:04 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/26 18:23:07 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/11/26 19:16:09 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ static size_t		gnl_strlen(char *s)
 	return (len);
 }
 
+/*
+**	Function returns len of string 's'
+**	to character 'c'.
+*/
+
+
 static size_t		gnl_strclen(char *s, char c)
 {
 	size_t	len;
@@ -46,6 +52,10 @@ static size_t		gnl_strclen(char *s, char c)
 	}
 	return (len);
 }
+
+/*
+**	Finds 'c' in string 's' and returns pointer for it.
+*/
 
 char				*gnl_strchr(char *s, char c)
 {
