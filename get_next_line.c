@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 12:55:18 by gdrive            #+#    #+#             */
-/*   Updated: 2020/12/01 18:59:26 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/12/01 19:17:17 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ static char		*buff_c_cut(char *buff, char c)
 }
 
 /*
-**	Make a copy of the buffer
-**	without characters up to 'c'.
+**	Copy str in buff to line.
 */
 
 int				take_str(char **line, char **buff)
