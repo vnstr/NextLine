@@ -6,7 +6,7 @@
 /*   By: gdrive <gdrive@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 12:55:18 by gdrive            #+#    #+#             */
-/*   Updated: 2020/12/01 18:50:10 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/12/01 18:59:26 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static char		*buff_create(char *buff)
 	}
 	return (buff);
 }
-
 
 /*
 **	Make a copy of the buffer

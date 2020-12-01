@@ -6,7 +6,7 @@
 /*   By: gdrive <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 18:23:04 by gdrive            #+#    #+#             */
-/*   Updated: 2020/11/26 19:16:09 by gdrive           ###   ########.fr       */
+/*   Updated: 2020/12/01 18:59:07 by gdrive           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static size_t		gnl_strlen(char *s)
 **	Function returns len of string 's'
 **	to character 'c'.
 */
-
 
 static size_t		gnl_strclen(char *s, char c)
 {
