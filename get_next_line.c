@@ -25,8 +25,8 @@ static int		buff_free(char **buff)
 	if (*buff != NULL)
 	{
 		free(*buff);
+		*buff = NULL;
 	}
-	*buff = NULL;
 	return (0);
 }
 
@@ -57,7 +57,6 @@ static char		*buff_c_cut(char *buff, char c)
 	uint64_t	i;
 	uint64_t	j;
 
-	res = NULL;
 	res = buff_create(res);
 	if (res == NULL)
 		return (NULL);
@@ -67,6 +66,7 @@ static char		*buff_c_cut(char *buff, char c)
 	if (buff[i] == '\0')
 	{
 		res[0] = buff[i];
+		free(buff);
 		return (res);
 	}
 	i++;
@@ -88,15 +88,15 @@ int				take_str(char **line, char **buff)
 {
 	*line = strcjoin_free_s1(*line, *buff, '\n');
 	if (*line == NULL)
-		return (-1);
+		return (ERROR);
 	if (gnl_strchr(*buff, '\n'))
 	{
 		*buff = buff_c_cut(*buff, '\n');
 		if (*buff == NULL)
-			return (-1);
-		return (1);
+			return (ERROR);
+		return (TRUE);
 	}
-	return (0);
+	return (FALSE);
 }
 
 /*
@@ -109,26 +109,27 @@ int				get_next_line(int fd, char **line)
 {
 	static char		*buff[1024];
 	int32_t			read_count;
-	int32_t			tmp;
+	int32_t			status;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || line == NULL)
-		return (-1);
+		return (ERROR);
 	if ((*line = strcjoin_free_s1(NULL, "\0", '\0')) == NULL)
-		return (-1);
+		return (ERROR);
 	if ((buff[fd] = buff_create(buff[fd])) == NULL)
-		return (buff_free(&(buff[fd])) - 1);
+		return (buff_free(&(buff[fd])) ERROR);
 	if (buff[fd][0] != '\0')
 	{
-		if ((tmp = take_str(line, &(buff[fd]))) == 1)
-			return (1);
+		if ((status = take_str(line, &(buff[fd]))) == TRUE)
+			return (TRUE);
 	}
-	while ((read_count = read(fd, buff[fd], BUFFER_SIZE)) > 0 && tmp != -1)
+	while ((read_count = read(fd, buff[fd], BUFFER_SIZE)) > 0
+			&& status != ERROR)
 	{
 		buff[fd][read_count] = '\0';
-		if ((tmp = take_str(line, &buff[fd])) == 1)
-			return (1);
+		if ((status = take_str(line, &buff[fd])) == TRUE)
+			return (TRUE);
 	}
-	if (read_count < 0 || tmp == -1)
-		return (buff_free(&(buff[fd])) - 1);
+	if (read_count < 0 || status == ERROR)
+		return (buff_free(&(buff[fd])) ERROR);
 	return (buff_free(&(buff[fd])));
 }

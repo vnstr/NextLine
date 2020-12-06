@@ -14,25 +14,6 @@
 #include "get_next_line.h"
 
 /*
-**	Function returns len of string 's'.
-*/
-
-static size_t		gnl_strlen(char *s)
-{
-	size_t	len;
-
-	len = 0;
-	if (s == NULL)
-		return (len);
-	while (*s != '\0')
-	{
-		s++;
-		len++;
-	}
-	return (len);
-}
-
-/*
 **	Function returns len of string 's'
 **	to character 'c'.
 */
@@ -56,7 +37,7 @@ static size_t		gnl_strclen(char *s, char c)
 **	Finds 'c' in string 's' and returns pointer for it.
 */
 
-char				*gnl_strchr(char *s, char c)
+char			*gnl_strchr(char *s, char c)
 {
 	if (s == NULL)
 		return (NULL);
@@ -74,12 +55,12 @@ char				*gnl_strchr(char *s, char c)
 **	up to the character 'c'.
 */
 
-char				*strcjoin_free_s1(char *s1, char *s2, char c)
+char			*strcjoin_free_s1(char *s1, char *s2, char c)
 {
-	t_str	res;
-	size_t	i;
+	t_str		res;
+	uint64_t	i;
 
-	res.len = gnl_strlen(s1) + gnl_strclen(s2, '\n');
+	res.len = gnl_strclen(s1, '\0') + gnl_strclen(s2, '\n');
 	res.s = (char*)malloc(sizeof(char) * (res.len + 1));
 	if (res.s == NULL)
 	{

@@ -12,19 +12,33 @@
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+
 # include <stdlib.h>
 # include <stdint.h>
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
 # endif
 
-typedef struct		s_str
+# ifndef ERROR
+# define ERROR -1
+# endif
+
+# ifndef TRUE
+# define TRUE 1
+# endif
+
+# ifndef FALSE
+# define FALSE 0
+# endif
+
+typedef struct			s_str
 {
 	char			*s;
 	size_t			len;
-}					t_str;
+}				t_str;
 
-int					get_next_line(int fd, char **line);
+int				get_next_line(int fd, char **line);
 char				*strcjoin_free_s1(char *s1, char *s2, char c);
 char				*gnl_strchr(char *s, char c);
 
